@@ -1,6 +1,5 @@
 package Inicio;
 
-
 import Alimentos.Cardapios.Cardapio;
 import Alimentos.Carrinho.FuncoesCarrinho;
 import Humanos.Cliente;
@@ -102,7 +101,8 @@ public class MenuInicial {
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
-                    }break;
+                    }
+                    break;
 
                 case 7:
                     System.out.println("Você escolheu remover um produto do carrinho.");

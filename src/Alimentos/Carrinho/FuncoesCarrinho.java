@@ -1,7 +1,6 @@
 package Alimentos.Carrinho;
 
 import Alimentos.Cardapios.Cardapio;
-import Alimentos.Carrinho.Carrinho;
 import Alimentos.Produto;
 import Inicio.MenuInicial;
 
@@ -95,7 +94,7 @@ public class FuncoesCarrinho implements OrganizarCarrinho {
                     valorTotalPagar += valorTotalUnitario;
                 }
                 System.out.println("Valor total a pagar:" + valorTotalPagar + " reais");
-                System.out.println("Seu saldo atual é: "+MenuInicial.saldo+" reais");
+                System.out.println("Seu saldo atual é: " + MenuInicial.saldo + " reais");
                 System.out.println("Deseja realmente comprar?");
                 System.out.println("1 - Sim");
                 System.out.println("2 - Não");
@@ -106,10 +105,10 @@ public class FuncoesCarrinho implements OrganizarCarrinho {
                         case 1:
                             if (MenuInicial.saldo >= valorTotalPagar) {
                                 double transacao = MenuInicial.saldo - valorTotalPagar;
-                                System.out.println("Compra efetuada com sucesso!\nSeu saldo agora é de: " + transacao +" reais");
+                                System.out.println("Compra efetuada com sucesso!\nSeu saldo agora é de: " + transacao + " reais");
                                 loop = false;
                                 break;
-                            }else {
+                            } else {
                                 System.out.println("Desculpe, você não tem saldo suficiente.");
                                 loop = false;
                                 break;
@@ -122,7 +121,8 @@ public class FuncoesCarrinho implements OrganizarCarrinho {
                         default:
                             System.err.println("Numero invalido!");
                             break;
-                    }break;
+                    }
+                    break;
                 }
             }
         }

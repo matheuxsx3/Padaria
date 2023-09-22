@@ -16,18 +16,8 @@ public class Cardapio {
     static int quantidadeH = getRandomQuantidade();
     static int quantidadeI = getRandomQuantidade();
     static int quantidadeJ = getRandomQuantidade();
-    static int quantidadeK = getRandomQuantidade();
-    static int quantidadeL = getRandomQuantidade();
-    static int quantidadeM = getRandomQuantidade();
-    static int quantidadeN = getRandomQuantidade();
-    static int quantidadeO = getRandomQuantidade();
-    static int quantidadeP = getRandomQuantidade();
-    static int quantidadeQ = getRandomQuantidade();
-    static int quantidadeR = getRandomQuantidade();
-    static int quantidadeS = getRandomQuantidade();
-    static int quantidadeT = getRandomQuantidade();
-    static int quantidadeU = getRandomQuantidade();
-    private static Produto[] cardapio = {
+
+    private static final Produto[] cardapio = {
             new Produto(1, " Pão Francês        ", 1.00, quantidadeA),
             new Produto(2, "Croissant          ", 1.50, quantidadeB),
             new Produto(3, "Bolo de Chocolate  ", 3.75, quantidadeC),
@@ -38,17 +28,6 @@ public class Cardapio {
             new Produto(8, "Biscoito de Nutella", 5.00, quantidadeH),
             new Produto(9, "Torta de Maçã      ", 4.00, quantidadeI),
             new Produto(10, "Chocolat Chaud     ", 3.50, quantidadeJ),
-            new Produto(11, "Pão Integral       ", 1.25, quantidadeK),
-            new Produto(12, "Pão de Centeio     ", 1.50, quantidadeL),
-            new Produto(13, "Queijo Gouda       ", 2.75, quantidadeM),
-            new Produto(14, "Queijo Brie        ", 3.25, quantidadeN),
-            new Produto(15, "Queijo Cheddar     ", 2.50, quantidadeO),
-            new Produto(16, "Croissant recheado ", 1.75, quantidadeP),
-            new Produto(17, "Donut de Morango   ", 1.95, quantidadeQ),
-            new Produto(18, "Bolo de Cenoura    ", 3.50, quantidadeR),
-            new Produto(19, "Cappuccino         ", 3.00, quantidadeS),
-            new Produto(20, "Suco de Laranja    ", 2.50, quantidadeT),
-            new Produto(21, "Água Mineral       ", 1.00, quantidadeU)
     };
 
     public static Produto[] getCardapio() {
