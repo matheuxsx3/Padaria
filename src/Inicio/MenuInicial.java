@@ -10,22 +10,32 @@ import java.util.Scanner;
 
 public class MenuInicial {
     public static double saldo;
-    static FuncoesCarrinho funcoesCarrinho = new FuncoesCarrinho();
     public static boolean variavelVerificadora = false;
+
     static Cliente cliente = null;
+    static Scanner scanner = new Scanner(System.in);
+    static FuncoesCarrinho funcoesCarrinho = new FuncoesCarrinho();
 
     public void boasVindas() {
         System.out.println("*****************************************************************");
         System.out.println("                 Bem vindo à padaria Pão Açucarado!             ");
         System.out.println("****************************************************************");
-        System.out.println("                             ______    ");
-        System.out.println("                            /      \\   ");
-        System.out.println("                           /        \\  ");
-        System.out.println("                          /          \\ ");
-        System.out.println("                         /            \\ ");
-        System.out.println("                        │    __  __    │");
-        System.out.println("                        │   │  │|  │   │");
-        System.out.println("                        │___│__││__│___│\n");
+        System.out.println("                                   /\\");
+        System.out.println("                              /\\  //\\");
+        System.out.println("                       /\\    //\\///\\\\\\         /\\");
+        System.out.println("                      //\\  ///\\ ////\\\\\\   /\\  //\\\\");
+        System.out.println("         /\\          /  ^ \\/^ ^/^  ^  ^ \\/^ \\/  ^ \\");
+        System.out.println("        / ^\\    /\\  / ^   /  ^/ ^ ^ ^   ^\\ ^/  ^^  \\");
+        System.out.println("       /^   \\  / ^\\/ ^ ^   ^ / ^  ^    ^  \\/ ^   ^  \\       *");
+        System.out.println("      /  ^ ^ \\/^  ^\\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \\     /|\\");
+        System.out.println("     / ^ ^  ^ \\ ^  _\\___________________|  |_____^ ^  \\   /||o\\");
+        System.out.println("    / ^^  ^ ^ ^\\  /______________________________\\ ^ ^ \\ /|o|||\\");
+        System.out.println("   /  ^  ^^ ^ ^  /________________________________\\  ^  /|||||o|\\");
+        System.out.println("  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||");
+        System.out.println(" / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |");
+        System.out.println("/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo");
+        System.out.println("ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+
 
     }
 
@@ -40,9 +50,6 @@ public class MenuInicial {
         System.out.println("│===================================================================│");
         System.out.println("│                          0. Sair                                  │");
         System.out.println("│===================================================================│");
-
-
-        Scanner scanner = new Scanner(System.in);
 
         boolean loop = true;
         while (loop) {
@@ -90,20 +97,17 @@ public class MenuInicial {
                     break;
                 case 6:
                     System.out.println("Você escolheu adicionar um item ao carrinho!");
-                    while (true) {
-                        try {
-                            System.out.println("Qual é o código do item que você deseja adicionar?:");
-                            int codigoSelecionado = scanner.nextInt();
-                            System.out.println("Qual é a quantidade que você deseja?:");
-                            int quantidadeSelecionada = scanner.nextInt();
-                            funcoesCarrinho.encontrarProdutoAdicionado(codigoSelecionado, quantidadeSelecionada);
-                            break;
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
+                    while (true) try {
+                        System.out.println("Qual é o código do item que você deseja adicionar?:");
+                        int codigoSelecionado = scanner.nextInt();
+                        System.out.println("Qual é a quantidade que você deseja?:");
+                        int quantidadeSelecionada = scanner.nextInt();
+                        funcoesCarrinho.encontrarProdutoAdicionado(codigoSelecionado, quantidadeSelecionada);
+                        break;
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
                     break;
-
                 case 7:
                     System.out.println("Você escolheu remover um produto do carrinho.");
                     System.out.println("Digite o código do produto que deseja remover:");

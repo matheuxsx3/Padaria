@@ -5,5 +5,6 @@ public class Main {
         MenuInicial funcaoInicial = new MenuInicial();
         funcaoInicial.boasVindas();
         MenuInicial.menuDeOpcoes();
+        
     }
 }

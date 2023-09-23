@@ -81,10 +81,11 @@ public class FuncoesCarrinho implements OrganizarCarrinho {
         }
     }
 
+
     @Override
     public void comprarItens() {
         if (!MenuInicial.variavelVerificadora) {
-            System.err.println("Não foi possivel realizar a compra, usuario ainda não cadastrado.\n Faça o cadastro e tente novamente!");
+            System.err.println("Não foi possivel realizar a compra, usuario ainda não cadastrado.\nFaça o cadastro e tente novamente!");
         } else {
             if (itensNoCarrinho.isEmpty()) {
                 System.out.println("O carrinho está vazio.");
@@ -106,13 +107,11 @@ public class FuncoesCarrinho implements OrganizarCarrinho {
                             if (MenuInicial.saldo >= valorTotalPagar) {
                                 double transacao = MenuInicial.saldo - valorTotalPagar;
                                 System.out.println("Compra efetuada com sucesso!\nSeu saldo agora é de: " + transacao + " reais");
-                                loop = false;
-                                break;
                             } else {
                                 System.out.println("Desculpe, você não tem saldo suficiente.");
-                                loop = false;
-                                break;
                             }
+                            loop = false;
+                            break;
                         case 2:
                             System.out.println("Compra cancelada! \nSeus itens permanecem no carrinho.");
                             loop = false;
