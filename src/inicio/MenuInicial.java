@@ -1,9 +1,9 @@
-package Inicio;
+package inicio;
 
-import Alimentos.Cardapios.Cardapio;
-import Alimentos.Carrinho.FuncoesCarrinho;
-import Humanos.Cliente;
-import Humanos.IsCliente;
+import alimentos.cardapios.Cardapio;
+import alimentos.carrinho.FuncoesCarrinho;
+import humanos.Cliente;
+import humanos.IsCliente;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -44,10 +44,10 @@ public class MenuInicial {
         System.out.println("│===================================================================│");
         System.out.println("│                        Menu de Ações                              │");
         System.out.println("│===================================================================│");
-        System.out.println("│  1. Cadastrar cliente        │ 5. Ver o carrinho de compras       │");
-        System.out.println("│  2. Ver o cardápio           │ 6. Adicionar produto no carrinho   │");
+        System.out.println("│  1. Menu do cliente          │ 5. Ver o carrinho de compras       │");
+        System.out.println("│  2. Enviar feedback          │ 6. Adicionar produto no carrinho   │");
         System.out.println("│  3. Opções de contato        │ 7. Remover produto do carrinho     │");
-        System.out.println("│  4. Avaliar o nosso serviço  │ 8. Comprar Produtos do carrinho    │");
+        System.out.println("│  4. Visualizar cardápio      │ 8. Comprar Produtos do carrinho    │");
         System.out.println("│===================================================================│");
         System.out.println("│                          0. Sair                                  │");
         System.out.println("│===================================================================│");
@@ -92,17 +92,18 @@ public class MenuInicial {
                     }
                     break;
                 case 2:
-                    Cardapio.mostrarCardapio(Cardapio.getCardapio());
-                    break;
-                case 3:
-                    System.out.println("Instagram : @matheuxsx3\nWhatsapp : 4002-8922");
-                    break;
-                case 4:
                     System.out.println("Você escolheu avaliar o nosso serviço!");
                     System.out.println("Ficamos honrados em receber seu feedback!");
                     System.out.println("Diga mais sobre sua experiência conosco:");
                     scanner.next();
                     System.out.println("Feedback recebido com sucesso, muito obrigado!");
+                    break;
+
+                case 3:
+                    System.out.println("Instagram : @matheuxsx3\nWhatsapp : 4002-8922");
+                    break;
+                case 4:
+                    Cardapio.mostrarCardapio(Cardapio.getCardapio());
                     break;
                 case 5:
                     funcoesCarrinho.exibirCarrinho();

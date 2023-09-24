@@ -1,4 +1,6 @@
-package Humanos;
+package humanos;
+
+import humanos.crudCliente.CadastrarCliente;
 
 import java.util.Scanner;
 
@@ -17,7 +19,6 @@ public class IsCliente extends Cliente {
 
         Cliente cliente = null;
         if (!parametro) {
-
             System.out.println("Digite seu nome");
             String nome = scanner.nextLine();
             System.out.println("Digite seu numero de telefone:");

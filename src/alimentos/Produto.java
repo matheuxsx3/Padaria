@@ -1,4 +1,4 @@
-package Alimentos;
+package alimentos;
 
 
 public class Produto {

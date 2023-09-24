@@ -1,4 +1,4 @@
-package Humanos;
+package humanos;
 
 public abstract class Pessoa {
     private String nome;

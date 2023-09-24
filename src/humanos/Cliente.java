@@ -1,6 +1,4 @@
-package Humanos;
-
-import Humanos.Pessoa;
+package humanos;
 
 public class Cliente extends Pessoa {
     private String numeroContato;
