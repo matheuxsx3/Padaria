@@ -1,6 +1,4 @@
 package Alimentos.Carrinho;
-
-;
 import Alimentos.Produto;
 
 import java.util.ArrayList;
