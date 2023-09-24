@@ -47,8 +47,6 @@ public class Cardapio {
         }
 
         System.out.println("│---------------------------------------------------------│");
-
-        MenuInicial.menuDeOpcoes();
     }
 
     static int getRandomQuantidade() {

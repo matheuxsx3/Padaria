@@ -13,6 +13,14 @@ public class Produto {
         this.preco = preco;
         this.quantidade = quantidade;
     }
+    public Produto(Produto produtoOriginal) {
+        this.codigo = produtoOriginal.codigo;
+        this.nome = produtoOriginal.nome;
+        this.preco = produtoOriginal.preco;
+        this.quantidade = produtoOriginal.quantidade;
+    }
+
+
 
     public Produto() {
     }

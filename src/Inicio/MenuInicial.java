@@ -5,27 +5,38 @@ import Alimentos.Carrinho.FuncoesCarrinho;
 import Humanos.Cliente;
 import Humanos.IsCliente;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 
 public class MenuInicial {
     public static double saldo;
-    static FuncoesCarrinho funcoesCarrinho = new FuncoesCarrinho();
-    public static boolean variavelVerificadora = false;
+    public static boolean isCliente = false;
+
     static Cliente cliente = null;
+    static Scanner scanner = new Scanner(System.in);
+    static FuncoesCarrinho funcoesCarrinho = new FuncoesCarrinho();
 
     public void boasVindas() {
         System.out.println("*****************************************************************");
         System.out.println("                 Bem vindo à padaria Pão Açucarado!             ");
         System.out.println("****************************************************************");
-        System.out.println("                             ______    ");
-        System.out.println("                            /      \\   ");
-        System.out.println("                           /        \\  ");
-        System.out.println("                          /          \\ ");
-        System.out.println("                         /            \\ ");
-        System.out.println("                        │    __  __    │");
-        System.out.println("                        │   │  │|  │   │");
-        System.out.println("                        │___│__││__│___│\n");
+        System.out.println("                                   ___");
+        System.out.println("                              ___  //\\");
+        System.out.println("                        ___   //\\///\\\\\\        ___");
+        System.out.println("                       //\\ ///\\ ////\\\\\\   ___ //\\\\");
+        System.out.println("         ___          /  ^ \\/^ ^/^  ^  ^ \\/^ \\/ ^ \\");
+        System.out.println("        / ^\\    __  / ^   /  ^/ ^ ^ ^   ^\\ ^/  ^^  \\");
+        System.out.println("       /^   \\  / ^\\/ ^ ^   ^ / ^  ^    ^  \\/ ^   ^  \\       *");
+        System.out.println("      /  ^ ^ \\/^  ^\\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \\     /|\\");
+        System.out.println("     / ^ ^  ^ \\ ^  _\\___________________|  |_____^ ^  \\   /||o\\");
+        System.out.println("    / ^^  ^ ^ ^\\  /______________________________\\ ^ ^ \\ /|o|||\\");
+        System.out.println("   /  ^  ^^ ^ ^  /________________________________\\  ^  /|||||o|\\");
+        System.out.println("  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||");
+        System.out.println(" / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |");
+        System.out.println("/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo");
+        System.out.println("ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+
 
     }
 
@@ -41,20 +52,28 @@ public class MenuInicial {
         System.out.println("│                          0. Sair                                  │");
         System.out.println("│===================================================================│");
 
-
-        Scanner scanner = new Scanner(System.in);
-
         boolean loop = true;
         while (loop) {
-            System.out.println("\nDigite uma opção do MENU:");
-
-            int num = scanner.nextInt();
+            System.out.println("\nDigite uma opção do Menu de ações:");
+            int num = -1;
+            while (num < 0) {
+                if (scanner.hasNextInt()) {
+                    num = scanner.nextInt();
+                    if (num < 0 || num > 8) {
+                        System.out.println("Opção inválida. Escolha um número entre 0 e 8.");
+                    }
+                } else {
+                    System.err.println("⚠ Entrada inválida. Digite um número inteiro.");
+                    scanner.next();
+                }
+            }
             switch (num) {
                 case 0:
                     if (cliente != null) {
-                        System.out.println("Tchau, " + cliente.getNome() + "!");
+                        System.err.println("Fechando o sistema!");
+                        System.err.println("Até mais, " + cliente.getNome() + "!");
                     } else {
-                        System.out.println("Até mais!");
+                        System.err.println("⚠ Fechando o sistema! Até mais!");
                     }
                     loop = false;
                     break;
@@ -62,11 +81,11 @@ public class MenuInicial {
 
                 case 1:
                     if (cliente == null) {
-                        cliente = IsCliente.verificarSeCliente(variavelVerificadora);
+                        cliente = IsCliente.verificarSeCliente(isCliente);
                         if (cliente != null) {
-                            variavelVerificadora = true;
+                            isCliente = true;
                             saldo = cliente.getQuantidadeDinheiro();
-                            System.out.println("Agradecemos por virar cliente, muito obrigado " + cliente.getNome() + "!");
+                            System.out.println("Obrigado por se tornar cliente, " + cliente.getNome() + "!");
                         }
                     } else {
                         System.out.println("Você já está cadastrado!");
@@ -99,7 +118,8 @@ public class MenuInicial {
                             funcoesCarrinho.encontrarProdutoAdicionado(codigoSelecionado, quantidadeSelecionada);
                             break;
                         } catch (Exception e) {
-                            throw new RuntimeException(e);
+                            System.err.println("⚠ Entrada inválida. Certifique-se de que você digitou números inteiros.");
+                            scanner.nextLine();
                         }
                     }
                     break;
@@ -107,24 +127,30 @@ public class MenuInicial {
                 case 7:
                     System.out.println("Você escolheu remover um produto do carrinho.");
                     System.out.println("Digite o código do produto que deseja remover:");
+
                     while (true) {
-                        try {
-                            int teste = scanner.nextInt();
-                            funcoesCarrinho.removerProduto(teste);
+                        if (scanner.hasNextInt()) {
+                            int remover = scanner.nextInt();
+                            Optional<Integer> remover1 = Optional.of(remover);
+                            funcoesCarrinho.removerProduto(remover1.get());
                             break;
-                        } catch (Exception e) {
-                            System.err.println("Número invalido.\n tente novamente");
+                        } else {
+                            System.err.println("⚠ Entrada inválida. Digite um número inteiro.");
+                            scanner.next();
                         }
                     }
                     break;
+
+
                 case 8:
                     System.out.println("Você escolheu comprar itens do carrinho");
                     funcoesCarrinho.comprarItens();
                     break;
                 default:
-                    System.out.println("O numero escolhido não esta disponivel.");
+                    System.err.println("⚠ O numero escolhido não esta disponivel.");
                     break;
             }
         }
     }
 }
+

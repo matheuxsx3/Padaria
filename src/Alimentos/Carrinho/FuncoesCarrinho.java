@@ -13,84 +13,95 @@ public class FuncoesCarrinho implements OrganizarCarrinho {
     Scanner scanner = new Scanner(System.in);
     List<Produto> itensNoCarrinho = carrinho.getItens();
     Produto[] cardapio = Cardapio.getCardapio();
-    int quantidadeCarrinho;
-    double valorTotalPagar;
 
     @Override
     public void encontrarProdutoAdicionado(int id, int quantidade) {
         Produto produtoSelecionado = null;
-        for (
-                Produto produto : cardapio) {
+        for (Produto produto : cardapio) {
             if (produto.getCodigo() == id) {
-                produtoSelecionado = produto;
+                produtoSelecionado = new Produto(produto); // Crie uma cópia do produto
+                break;
             }
         }
+
         if (produtoSelecionado != null) {
-            if ((produtoSelecionado.getQuantidade() - quantidade) < 0) {
-                System.err.println("A quantidade informada não está disponivel!");
-                System.err.println("O produto não foi adicionado ao carrinho.");
+            // Verifique se o produto já existe no carrinho
+            boolean produtoJaNoCarrinho = itensNoCarrinho.stream().anyMatch(p -> p.getCodigo() == id);
 
-            } else if (itensNoCarrinho.contains(produtoSelecionado)) {
-                System.err.println("O produto ja existe no carrinho.\n remova-o e adicione novamente!");
+            if (produtoJaNoCarrinho) {
+                System.err.println("⚠ O produto já existe no carrinho. Remova-o e adicione novamente se necessário.");
             } else {
-                carrinho.itens.add(produtoSelecionado);
-                System.out.println("Produto adicionado ao carrinho: " + produtoSelecionado.getNome());
-                int subtrairQuantidade = produtoSelecionado.getQuantidade() - quantidade;
-                produtoSelecionado.setQuantidade(subtrairQuantidade);
-                quantidadeCarrinho = quantidade;
-                System.out.println("A quantidade de " + produtoSelecionado.getNome().strip() + " agora é: " + produtoSelecionado.getQuantidade());
+                if ((produtoSelecionado.getQuantidade() - quantidade) < 0) {
+                    System.err.println("⚠ A quantidade informada não está disponível!");
+                    System.err.println("⚠ O produto não foi adicionado ao carrinho.");
+                } else {
+                    produtoSelecionado.setQuantidade(quantidade);
+                    carrinho.itens.add(produtoSelecionado);
 
+                    for (Produto produto : cardapio) {
+                        if (produto.getCodigo() == id) {
+                            produto.setQuantidade(produto.getQuantidade() - quantidade);
+                            System.out.println("A quantidade de " + produtoSelecionado.getNome() + " agora é: " + produto.getQuantidade());
+                        }
+                    }
+
+                    System.out.println("Produto adicionado ao carrinho: " + produtoSelecionado.getNome());
+                }
             }
         } else {
-            System.err.println("O código informado não corresponde a nenhum produto!");
+            System.err.println("⚠ O número digitado não corresponde a nenhum produto!");
         }
-
     }
 
     @Override
     public void removerProduto(int id) {
-        List<Produto> itensNoCarrinho = carrinho.getItens();
-        Produto variavel = null;
-        for (
-                Produto produto : itensNoCarrinho) {
+        Produto produtoEscolhido = null;
+        for (Produto produto : itensNoCarrinho) {
             if (produto.getCodigo() == id) {
-                variavel = produto;
+                produtoEscolhido = produto;
+                break;
             }
         }
-        if (variavel != null) {
-            itensNoCarrinho.remove(variavel);
-            System.out.println(variavel.getNome().strip() + " foi REMOVIDO do carrinho.");
-            int adicionarQuantidade = variavel.getQuantidade() + quantidadeCarrinho;
-            variavel.setQuantidade(adicionarQuantidade);
+
+        if (produtoEscolhido != null) {
+            // Resto do seu código para remover o produto do carrinho
+
+            // Atualize a quantidade no cardápio
+            for (Produto produto : cardapio) {
+                if (produto.getCodigo() == id) {
+                    produto.setQuantidade(produto.getQuantidade() + produtoEscolhido.getQuantidade());
+                    break;
+                }
+            }
         } else {
-            System.out.println("Não foi possível encontrar o produto no carrinho");
+            System.err.println("⚠ Não foi possível encontrar o produto no carrinho");
         }
     }
 
     @Override
     public void exibirCarrinho() {
-
         if (itensNoCarrinho.isEmpty()) {
-            System.out.println("O carrinho está vazio.");
+            System.err.println("⚠ O carrinho está vazio.");
         } else {
             System.out.println("Itens no carrinho:");
             for (Produto item : itensNoCarrinho) {
-                double valorTotal = item.getPreco() * quantidadeCarrinho;
-                System.out.println("Nome: " + item.getNome().strip() + " │ Preço Unitário: " + item.getPreco() + " reais " + " │ Quantidade: " + quantidadeCarrinho + " │ Valor Total: " + valorTotal + " reais");
+                double valorTotal = item.getPreco() * item.getQuantidade();
+                System.out.println("Nome: " + item.getNome().strip() + " │ Preço Unitário: " + item.getPreco() + " reais " + " │ Quantidade: " + item.getQuantidade() + " │ Valor Total: " + valorTotal + " reais");
             }
         }
     }
 
     @Override
     public void comprarItens() {
-        if (!MenuInicial.variavelVerificadora) {
-            System.err.println("Não foi possivel realizar a compra, usuario ainda não cadastrado.\n Faça o cadastro e tente novamente!");
+        double valorTotalPagar = 0;
+        if (!MenuInicial.isCliente) {
+            System.err.println("⚠ Não foi possível realizar a compra, usuário ainda não cadastrado.\nFaça o cadastro e tente novamente!");
         } else {
             if (itensNoCarrinho.isEmpty()) {
-                System.out.println("O carrinho está vazio.");
+                System.err.println("⚠ O carrinho está vazio.");
             } else {
                 for (Produto item : itensNoCarrinho) {
-                    double valorTotalUnitario = item.getPreco() * quantidadeCarrinho;
+                    double valorTotalUnitario = item.getPreco() * item.getQuantidade();
                     valorTotalPagar += valorTotalUnitario;
                 }
                 System.out.println("Valor total a pagar:" + valorTotalPagar + " reais");
@@ -99,27 +110,22 @@ public class FuncoesCarrinho implements OrganizarCarrinho {
                 System.out.println("1 - Sim");
                 System.out.println("2 - Não");
                 int num = scanner.nextInt();
-                boolean loop = true;
-                while (loop) {
+                while (true) {
                     switch (num) {
                         case 1:
                             if (MenuInicial.saldo >= valorTotalPagar) {
-                                double transacao = MenuInicial.saldo - valorTotalPagar;
-                                System.out.println("Compra efetuada com sucesso!\nSeu saldo agora é de: " + transacao + " reais");
-                                loop = false;
-                                break;
+                                MenuInicial.saldo -= valorTotalPagar;
+                                itensNoCarrinho.clear();
+                                System.out.println("Compra efetuada com sucesso!\nSeu novo saldo é de: " + MenuInicial.saldo + " reais");
                             } else {
-                                System.out.println("Desculpe, você não tem saldo suficiente.");
-                                loop = false;
-                                break;
+                                System.err.println("⚠ Desculpe, você não tem saldo suficiente.");
                             }
-                        case 2:
-                            System.out.println("Compra cancelada! \nSeus itens permanecem no carrinho.");
-                            loop = false;
                             break;
-
+                        case 2:
+                            System.err.println("⚠ Compra cancelada! \nSeus itens permanecem no carrinho.");
+                            break;
                         default:
-                            System.err.println("Numero invalido!");
+                            System.err.println("⚠ Número inválido!");
                             break;
                     }
                     break;
