@@ -1,14 +1,13 @@
-package Alimentos.Carrinho;
+package alimentos.carrinho;
 
-import Alimentos.Cardapios.Cardapio;
-import Alimentos.Produto;
-import Inicio.MenuInicial;
+import alimentos.Produto;
+import alimentos.cardapios.Cardapio;
+import humanos.crudCliente.CadastrarCliente;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class FuncoesCarrinho implements OrganizarCarrinho {
-
+public class FuncoesCarrinho implements Alimentos.Carrinho.OrganizarCarrinho {
     Carrinho carrinho = new Carrinho();
     Scanner scanner = new Scanner(System.in);
     List<Produto> itensNoCarrinho = carrinho.getItens();
@@ -94,7 +93,7 @@ public class FuncoesCarrinho implements OrganizarCarrinho {
     @Override
     public void comprarItens() {
         double valorTotalPagar = 0;
-        if (!MenuInicial.isCliente) {
+        if (CadastrarCliente.cliente == null) {
             System.err.println("⚠ Não foi possível realizar a compra, usuário ainda não cadastrado.\nFaça o cadastro e tente novamente!");
         } else {
             if (itensNoCarrinho.isEmpty()) {
@@ -105,7 +104,7 @@ public class FuncoesCarrinho implements OrganizarCarrinho {
                     valorTotalPagar += valorTotalUnitario;
                 }
                 System.out.println("Valor total a pagar:" + valorTotalPagar + " reais");
-                System.out.println("Seu saldo atual é: " + MenuInicial.saldo + " reais");
+                System.out.println("Seu saldo atual é: " + CadastrarCliente.cliente.getQuantidadeDinheiro() + " reais");
                 System.out.println("Deseja realmente comprar?");
                 System.out.println("1 - Sim");
                 System.out.println("2 - Não");
@@ -113,10 +112,12 @@ public class FuncoesCarrinho implements OrganizarCarrinho {
                 while (true) {
                     switch (num) {
                         case 1:
-                            if (MenuInicial.saldo >= valorTotalPagar) {
-                                MenuInicial.saldo -= valorTotalPagar;
+                            if (CadastrarCliente.cliente.getQuantidadeDinheiro() >= valorTotalPagar) {
+                                double teste = CadastrarCliente.cliente.getQuantidadeDinheiro();
+                                teste -= valorTotalPagar;
+                                CadastrarCliente.cliente.setQuantidadeDinheiro(teste);
                                 itensNoCarrinho.clear();
-                                System.out.println("Compra efetuada com sucesso!\nSeu novo saldo é de: " + MenuInicial.saldo + " reais");
+                                System.out.println("Compra efetuada com sucesso!\nSeu novo saldo é de: " + CadastrarCliente.cliente.getQuantidadeDinheiro() + " reais");
                             } else {
                                 System.err.println("⚠ Desculpe, você não tem saldo suficiente.");
                             }

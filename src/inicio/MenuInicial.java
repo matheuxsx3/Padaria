@@ -2,18 +2,13 @@ package inicio;
 
 import alimentos.cardapios.Cardapio;
 import alimentos.carrinho.FuncoesCarrinho;
-import humanos.Cliente;
-import humanos.IsCliente;
+import humanos.crudCliente.CadastrarCliente;
 
 import java.util.Optional;
 import java.util.Scanner;
 
 
 public class MenuInicial {
-    public static double saldo;
-    public static boolean isCliente = false;
-
-    static Cliente cliente = null;
     static Scanner scanner = new Scanner(System.in);
     static FuncoesCarrinho funcoesCarrinho = new FuncoesCarrinho();
 
@@ -69,9 +64,9 @@ public class MenuInicial {
             }
             switch (num) {
                 case 0:
-                    if (cliente != null) {
+                    if (CadastrarCliente.cliente != null) {
                         System.err.println("Fechando o sistema!");
-                        System.err.println("Até mais, " + cliente.getNome() + "!");
+                        System.err.println("Até mais, " + CadastrarCliente.cliente.getNome() + "!");
                     } else {
                         System.err.println("⚠ Fechando o sistema! Até mais!");
                     }
@@ -80,16 +75,10 @@ public class MenuInicial {
 
 
                 case 1:
-                    if (cliente == null) {
-                        cliente = IsCliente.verificarSeCliente(isCliente);
-                        if (cliente != null) {
-                            isCliente = true;
-                            saldo = cliente.getQuantidadeDinheiro();
-                            System.out.println("Obrigado por se tornar cliente, " + cliente.getNome() + "!");
-                        }
-                    } else {
-                        System.out.println("Você já está cadastrado!");
-                    }
+
+
+                        CadastrarCliente.verificarSeCliente();
+
                     break;
                 case 2:
                     System.out.println("Você escolheu avaliar o nosso serviço!");

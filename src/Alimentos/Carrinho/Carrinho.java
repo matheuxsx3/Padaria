@@ -1,5 +1,5 @@
-package Alimentos.Carrinho;
-import Alimentos.Produto;
+package alimentos.carrinho;
+import alimentos.Produto;
 
 import java.util.ArrayList;
 import java.util.List;

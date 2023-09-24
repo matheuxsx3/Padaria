@@ -1,7 +1,6 @@
-package Alimentos.Cardapios;
+package alimentos.cardapios;
 
-import Alimentos.Produto;
-import Inicio.MenuInicial;
+import alimentos.Produto;
 
 import java.util.Random;
 
