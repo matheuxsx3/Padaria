@@ -53,6 +53,7 @@ public class CadastrarCliente {
             }
 
         } while (condicao);
+        System.out.println("Conta cadastrada com sucesso!");
         cliente = new Cliente(nome, numeroTelefone, endereco, saldo);
     }
 }

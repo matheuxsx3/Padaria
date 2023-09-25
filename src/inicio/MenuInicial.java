@@ -2,6 +2,7 @@ package inicio;
 
 import alimentos.cardapios.Cardapio;
 import alimentos.carrinho.FuncoesCarrinho;
+import humanos.MenuCliente;
 import humanos.crudCliente.CadastrarCliente;
 
 import java.util.Optional;
@@ -9,6 +10,7 @@ import java.util.Scanner;
 
 
 public class MenuInicial {
+
     static Scanner scanner = new Scanner(System.in);
     static FuncoesCarrinho funcoesCarrinho = new FuncoesCarrinho();
 
@@ -75,10 +77,8 @@ public class MenuInicial {
 
 
                 case 1:
-
-
-                        CadastrarCliente.verificarSeCliente();
-
+                    MenuCliente.menuCliente();
+                    scanner.nextLine();
                     break;
                 case 2:
                     System.out.println("Você escolheu avaliar o nosso serviço!");

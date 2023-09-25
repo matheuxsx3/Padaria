@@ -18,7 +18,7 @@ public class FuncoesCarrinho implements Alimentos.Carrinho.OrganizarCarrinho {
         Produto produtoSelecionado = null;
         for (Produto produto : cardapio) {
             if (produto.getCodigo() == id) {
-                produtoSelecionado = new Produto(produto); // Crie uma cópia do produto
+                produtoSelecionado = new Produto(produto);
                 break;
             }
         }
@@ -40,7 +40,7 @@ public class FuncoesCarrinho implements Alimentos.Carrinho.OrganizarCarrinho {
                     for (Produto produto : cardapio) {
                         if (produto.getCodigo() == id) {
                             produto.setQuantidade(produto.getQuantidade() - quantidade);
-                            System.out.println("A quantidade de " + produtoSelecionado.getNome() + " agora é: " + produto.getQuantidade());
+                            System.out.println("A quantidade de " + produtoSelecionado.getNome().strip() + " agora é: " + produto.getQuantidade());
                         }
                     }
 
@@ -63,9 +63,6 @@ public class FuncoesCarrinho implements Alimentos.Carrinho.OrganizarCarrinho {
         }
 
         if (produtoEscolhido != null) {
-            // Resto do seu código para remover o produto do carrinho
-
-            // Atualize a quantidade no cardápio
             for (Produto produto : cardapio) {
                 if (produto.getCodigo() == id) {
                     produto.setQuantidade(produto.getQuantidade() + produtoEscolhido.getQuantidade());
