@@ -38,19 +38,19 @@ public class MenuInicial {
     }
 
     public static void menuDeOpcoes() {
-        System.out.println("│===================================================================│");
-        System.out.println("│                        Menu de Ações                              │");
-        System.out.println("│===================================================================│");
-        System.out.println("│  1. Menu do cliente          │ 5. Ver o carrinho de compras       │");
-        System.out.println("│  2. Enviar feedback          │ 6. Adicionar produto no carrinho   │");
-        System.out.println("│  3. Opções de contato        │ 7. Remover produto do carrinho     │");
-        System.out.println("│  4. Visualizar cardápio      │ 8. Comprar Produtos do carrinho    │");
-        System.out.println("│===================================================================│");
-        System.out.println("│                          0. Sair                                  │");
-        System.out.println("│===================================================================│");
-
         boolean loop = true;
         while (loop) {
+
+            System.out.println("│===================================================================│");
+            System.out.println("│                        Menu de Ações                              │");
+            System.out.println("│===================================================================│");
+            System.out.println("│  1. Menu do cliente          │ 5. Ver o carrinho de compras       │");
+            System.out.println("│  2. Enviar feedback          │ 6. Adicionar produto no carrinho   │");
+            System.out.println("│  3. Opções de contato        │ 7. Remover produto do carrinho     │");
+            System.out.println("│  4. Visualizar cardápio      │ 8. Comprar Produtos do carrinho    │");
+            System.out.println("│===================================================================│");
+            System.out.println("│                          0. Sair                                  │");
+            System.out.println("│===================================================================│");
             System.out.println("\nDigite uma opção do Menu de ações:");
             int num = -1;
             while (num < 0) {
