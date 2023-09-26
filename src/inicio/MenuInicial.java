@@ -81,16 +81,20 @@ public class MenuInicial {
                     System.out.println("Diga mais sobre sua experiência conosco:");
                     scanner.next();
                     System.out.println("Feedback recebido com sucesso, muito obrigado!");
+                    menuDeOpcoes();
                     break;
 
                 case 3:
                     System.out.println("Instagram : @matheuxsx3\nWhatsapp : 4002-8922");
+                    menuDeOpcoes();
                     break;
                 case 4:
                     Cardapio.mostrarCardapio(Cardapio.getCardapio());
+                    menuDeOpcoes();
                     break;
                 case 5:
                     funcoesCarrinho.exibirCarrinho();
+                    menuDeOpcoes();
                     break;
                 case 6:
                     System.out.println("Você escolheu adicionar um item ao carrinho!");
@@ -107,6 +111,7 @@ public class MenuInicial {
                             scanner.nextLine();
                         }
                     }
+                    menuDeOpcoes();
                     break;
 
                 case 7:
@@ -124,17 +129,21 @@ public class MenuInicial {
                             scanner.next();
                         }
                     }
+                    menuDeOpcoes();
                     break;
 
 
                 case 8:
                     System.out.println("Você escolheu comprar itens do carrinho");
                     funcoesCarrinho.comprarItens();
+                    menuDeOpcoes();
                     break;
                 default:
                     System.err.println("⚠ O numero escolhido não esta disponivel.");
+                    menuDeOpcoes();
                     break;
             }
+
             break;
         }
     }
