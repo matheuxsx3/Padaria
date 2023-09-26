@@ -40,11 +40,11 @@ public class FuncoesCarrinho implements Alimentos.Carrinho.OrganizarCarrinho {
                     for (Produto produto : cardapio) {
                         if (produto.getCodigo() == id) {
                             produto.setQuantidade(produto.getQuantidade() - quantidade);
-                            System.out.println("A quantidade de " + produtoSelecionado.getNome().strip() + " agora é: " + produto.getQuantidade());
+                            System.out.println("A quantidade de " + produtoSelecionado.getNome().strip() + " no estoque agora é: " + produto.getQuantidade());
                         }
                     }
 
-                    System.out.println("Produto adicionado ao carrinho: " + produtoSelecionado.getNome());
+                    System.out.println("Produto adicionado ao carrinho: " + produtoSelecionado.getNome().strip());
                 }
             }
         } else {
@@ -82,7 +82,7 @@ public class FuncoesCarrinho implements Alimentos.Carrinho.OrganizarCarrinho {
             System.out.println("Itens no carrinho:");
             for (Produto item : itensNoCarrinho) {
                 double valorTotal = item.getPreco() * item.getQuantidade();
-                System.out.println("Nome: " + item.getNome().strip() + " │ Preço Unitário: " + item.getPreco() + " reais " + " │ Quantidade: " + item.getQuantidade() + " │ Valor Total: " + valorTotal + " reais");
+                System.out.println("Nome: " + item.getNome().strip() + " │ Código: "+item.getCodigo() +" │ Preço Unitário: " + item.getPreco() + " reais " + " │ Quantidade: " + item.getQuantidade() + " │ Valor Total: " + valorTotal + " reais");
             }
         }
     }
