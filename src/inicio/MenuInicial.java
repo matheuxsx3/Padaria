@@ -38,8 +38,7 @@ public class MenuInicial {
     }
 
     public static void menuDeOpcoes() {
-        boolean loop = true;
-        while (loop) {
+        while (true) {
 
             System.out.println("│===================================================================│");
             System.out.println("│                        Menu de Ações                              │");
@@ -72,13 +71,9 @@ public class MenuInicial {
                     } else {
                         System.err.println("⚠ Fechando o sistema! Até mais!");
                     }
-                    loop = false;
                     break;
-
-
                 case 1:
                     MenuCliente.menuCliente();
-                    scanner.nextLine();
                     break;
                 case 2:
                     System.out.println("Você escolheu avaliar o nosso serviço!");
@@ -140,6 +135,7 @@ public class MenuInicial {
                     System.err.println("⚠ O numero escolhido não esta disponivel.");
                     break;
             }
+            break;
         }
     }
 }

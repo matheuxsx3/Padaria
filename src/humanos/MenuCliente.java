@@ -13,16 +13,15 @@ public class MenuCliente {
         Scanner scanner = new Scanner(System.in);
         int opcao;
         boolean sair = true;
-        System.out.println("========== Menu de Clientes ==========");
-        System.out.println("0. Voltar para o menu principal");
-        System.out.println("1. Visualizar informações da conta");
-        System.out.println("2. Cadastrar uma nova conta");
-        System.out.println("3. Editar informações da conta");
-        System.out.println("4. Deletar conta");
-        System.out.println("=======================================");
-
         try {
             do {
+                System.out.println("========== Menu de Clientes ==========");
+                System.out.println("0. Voltar para o menu principal");
+                System.out.println("1. Visualizar informações da conta");
+                System.out.println("2. Cadastrar uma nova conta");
+                System.out.println("3. Editar informações da conta");
+                System.out.println("4. Deletar conta");
+                System.out.println("=======================================");
                 System.out.print("Escolha uma opção: ");
                 opcao = scanner.nextInt();
                 switch (opcao) {
@@ -30,6 +29,8 @@ public class MenuCliente {
                     case 0:
                         MenuInicial.menuDeOpcoes();
                         sair = false;
+
+                        break;
                     case 1:
                         VisualizarCliente.visualizarCliente();
                         break;
